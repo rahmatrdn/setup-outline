@@ -1,0 +1,35 @@
+issuer: http://10.206.11.167:5556
+
+web:
+  http: 0.0.0.0:5556
+
+storage:
+  type: memory
+
+enablePasswordDB: true
+
+frontend:
+   issuer: Outline
+
+logger:
+  level: debug
+
+staticPasswords:
+  - email: "admin@example.com"
+    # bcrypt hash of the string "password": $(echo password | htpasswd -BinC 10 admin | cut -d: -f2)
+    hash: "$2y$10$jsRWHw54uxTUIfhjgUrB9u8HSzPk7TUuQri9sXZrKzRXcScvwYor."
+    username: "Super Admin"
+    userID: "1"
+
+
+oauth2:
+  skipApprovalScreen: true
+  alwaysShowLoginScreen: false
+  passwordConnector: local
+
+staticClients:
+  - id: "outline"
+    redirectURIs:
+      - 'http://10.206.11.167:3001/auth/oidc.callback'
+    name: "Outline"
+    secret: "3/24E7HJH+wTaE4K/yDUSE5xNm4JeaDsx4+z7sBUQWE=" 
